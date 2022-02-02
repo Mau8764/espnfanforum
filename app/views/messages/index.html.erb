@@ -1,1 +1,5 @@
-<h1>Hola</h1>
+<% @messages.each do |message| %>
+  <%= message.title %>
+  <%= message.description %>
+  <%= message.created_at %>
+<% end %>
