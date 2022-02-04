@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_member!, expect: [:index, :show]  
+  before_action :authenticate_user!, expect: [:index, :show]  
   before_action :find_message, only: [:edit, :update, :show, :destroy]
-  
+
   def index
     @messages = Message.all.order(:created_at)
   end
