@@ -6,15 +6,17 @@
 
     <h3 class="comment-section-header">Comments</h3 >
     <p><%= render @message.comments %>
+    <% if user_signed_in? %>
+      <h3 class="reply-to-msg">Join Discussion:</h3>
+      <%= render "comments/form" %>
 
-    <h3 class="reply-to-msg">Join Discussion:</h3>
-    <%= render "comments/form" %>
-
-    <div class="links btn-group">
-      <%= link_to "Back", root_path, class: "btn btn-default" %>
-      <%= link_to "Edit", edit_message_path, class: "btn btn-primary" %>
-      <%= link_to "Destroy", message_path(@message), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" %>
-    </div>
-
+      <div class="links btn-group">
+          <% if @message.user_id == current_user.id %> 
+            <%= link_to "Back", root_path, class: "btn btn-default" %>
+            <%= link_to "Edit", edit_message_path, class: "btn btn-primary" %>
+            <%= link_to "Destroy", message_path(@message), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" %>
+          <% end %>
+      </div>
+    <% end %>
   </div<>
 </div>

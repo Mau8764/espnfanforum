@@ -1,3 +1,16 @@
 <div class="comment">
   <p class="comment-content"><%= comment.content %></p>
   <p class="comment-posted-by">By: <%= comment.user.email %></p><%= time_ago_in_words(comment.updated_at) %> go </p>
+  <div class="links">
+  
+  <% if user_signed_in? %>
+    <% if comment.user_id == current_user.id %>
+    <%= link_to "Edit", edit_message_comment_path(comment.message, comment), class:"btn btn-primary" %>
+    <%= link_to "Delete", message_comment_path(comment.message, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-danger" %>
+  <% end %>
+  <% end %>
+  
+  
+  
+  </div>
+</div>
